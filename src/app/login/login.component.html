@@ -1,0 +1,46 @@
+<div class="form-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-4">
+        </div>
+        <div class="form-outer text-center col-lg-4">
+          <div class="text-center form-group">
+            <button class=" pad but-color" id="log">
+              <b>LOG IN</b>
+            </button>
+            <button class=" pad but-none" [routerLink]="['/signup']" href="" id="sign">
+              <b>SIGN UP</b>
+            </button>
+          </div>
+          <div id="login">
+            <form>
+              <div class="form-group">
+                <input type="username" class="form-control" [(ngModel)]="loginuser.username" id="username"
+                  (change)="invalidcredientals = false" placeholder="Username" name="username">
+              </div>
+
+              <div class="form-group">
+                <input type="password" class="form-control" [(ngModel)]="loginuser.password" id="pwd"
+                  placeholder="Enter Password" (change)="invalidcredientals = false" name="pwd">
+              </div>
+
+              <p class="text-center alertmsg" *ngIf="invalidcredientals">
+                Invalid Username or Password
+              </p>
+              <!-- <div class="form-group text-center ">
+                <a class="forget" routerLink="/forgotpassword">FORGOT PASSWORD</a>
+              </div> -->
+              <div>
+                <button class="btn btn-primary btn-info but" [disabled]="!loginuser.username || !loginuser.password" (click)="login(loginuser)" type="" block>Login</button>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
