@@ -1,0 +1,48 @@
+<div class="form-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-4">
+        </div>
+        <div class="form-outer text-center col-lg-4">
+          <div class="text-center form-group">
+            <button class=" pad but-none" [routerLink]="['/login']" id="log">
+              <b>LOG IN</b>
+            </button>
+            <button class=" pad but-color" [routerLink]="['/signup']" href="" id="sign">
+              <b>SIGN UP</b>
+            </button>
+          </div>
+          <div id="login">
+            <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+
+
+              <div class="form-group">
+
+                <input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm"
+                  placeholder="Name">
+              </div>
+              <div class="form-group">
+
+                <input type="email" name="email" formControlName="email" autocomplete="off"
+                  class="form-control input-sm" placeholder="Email">
+              </div>
+              <div class="form-group">
+
+                <input type="password" name="Password" formControlName="password" autocomplete="off"
+                  class="form-control input-sm" placeholder="Password">
+              </div>
+
+              <div>
+                <button type="submit" class="btn btn-primary btn-info but">Register</button>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
