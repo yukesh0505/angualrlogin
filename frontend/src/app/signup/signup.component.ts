@@ -9,6 +9,7 @@ import {
 import { first } from 'rxjs/operators'
 import { Router } from '@angular/router'
 import { ApiService } from '../api.service'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-signup',
@@ -17,48 +18,39 @@ import { ApiService } from '../api.service'
 })
 export class SignupComponent implements OnInit {
   angForm: FormGroup
+  registeruser: any = {}
   constructor (
     private fb: FormBuilder,
     private dataService: ApiService,
-    private router: Router
-  ) {
-    this.angForm = this.fb.group({
-      email: [
-        '',
-        [Validators.required, Validators.minLength(1), Validators.email]
-      ],
-      password: ['', Validators.required],
-      name: ['', Validators.required],
-      mobile: ['', Validators.required]
-    })
+    private router: Router,
+    private notification: ToastrService
+  ) {}
+
+  ngOnInit () {
+    // if (this.dataService.isLoggedIn) {
+    //   this.router.navigate(['dashboard'])
+    // }
   }
 
-  ngOnInit () {}
+  postdata (data) {
+    if (data.password == data.passwordconfirm) {
+      this.dataService
+        .userregistration(data.name, data.email, data.password)
+        .pipe(first())
+        .subscribe(
+          data => {
+            if (data.retcode == 0) {
+              this.notification.success('Registartion successfull')
+              this.router.navigate(['login'])
+            } else {
+              this.notification.error(data.status)
+            }
+          },
 
-  postdata (angForm1) {
-    this.dataService
-      .userregistration(
-        angForm1.value.name,
-        angForm1.value.email,
-        angForm1.value.password
-      )
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate(['login'])
-        },
-
-        error => {}
-      )
-  }
-
-  get email () {
-    return this.angForm.get('email')
-  }
-  get password () {
-    return this.angForm.get('password')
-  }
-  get name () {
-    return this.angForm.get('name')
+          error => {}
+        )
+    } else {
+      this.notification.error("Password mismatch")
+    }
   }
 }

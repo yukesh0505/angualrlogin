@@ -14,23 +14,22 @@
             </button>
           </div>
           <div id="login">
-            <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+
+            <form ngNativeValidate (ngSubmit)="postdata(loginuser)" autocomplete="off">
+
               <div class="form-group">
-                <input type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email">
+                <input type="email" name="email" autocomplete="off" class="form-control input-sm" placeholder="Email"
+                  required [(ngModel)]="loginuser.email">
               </div>
 
               <div class="form-group">
-                <input type="password" name="Password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password">
+                <input type="password" name="Password" autocomplete="off" class="form-control input-sm"
+                  placeholder="Password" required [(ngModel)]="loginuser.password">
               </div>
 
-              <!-- <p class="text-center alertmsg" *ngIf="invalidcredientals">
-                Invalid Username or Password
-              </p> -->
-              <!-- <div class="form-group text-center ">
-                <a class="forget" routerLink="/forgotpassword">FORGOT PASSWORD</a>
-              </div> -->
               <div>
-                <button type="submit" class="btn btn-primary btn-info but" >Login</button>
+
+                <button type="submit" class="btn btn-primary btn-info but">Login</button>
               </div>
             </form>
 

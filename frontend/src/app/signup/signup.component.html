@@ -14,23 +14,29 @@
             </button>
           </div>
           <div id="login">
-            <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+            <form ngNativeValidate (ngSubmit)="postdata(registeruser)" autocomplete="off">
 
 
               <div class="form-group">
 
-                <input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm"
-                  placeholder="Name">
+                <input type="text" name="name"  autocomplete="off" class="form-control input-sm"
+                  placeholder="Name" [(ngModel)]="registeruser.name" required >
               </div>
               <div class="form-group">
 
-                <input type="email" name="email" formControlName="email" autocomplete="off"
-                  class="form-control input-sm" placeholder="Email">
+                <input type="email" name="email"  autocomplete="off"
+                  class="form-control input-sm" placeholder="Email" [(ngModel)]="registeruser.email" required>
               </div>
               <div class="form-group">
 
-                <input type="password" name="Password" formControlName="password" autocomplete="off"
-                  class="form-control input-sm" placeholder="Password">
+                <input type="password" name="Password"  autocomplete="off"
+                  class="form-control input-sm" placeholder="Password" [(ngModel)]="registeruser.password" required>
+              </div>
+
+              <div class="form-group">
+
+                <input type="password" name="Passwordconfirm"  autocomplete="off"
+                  class="form-control input-sm" placeholder="Password" [(ngModel)]="registeruser.passwordconfirm" required>
               </div>
 
               <div>
